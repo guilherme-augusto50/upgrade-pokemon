@@ -13,7 +13,7 @@ namespace quiz_pokemon
         {
             InitializeComponent();
             LoadPokemon();
-            this.nomeUsuario = nomeUsuario;
+            this.nomeUsuario = nomeUsuario; //chama a variavel que amazena o nome de usuario do banco de dados
 
 
         }
@@ -36,14 +36,14 @@ namespace quiz_pokemon
                 {
                     Color pixel = originalBitmap.GetPixel(x, y);
 
-                    // Se o pixel for transparente, mantém transparente
+                    // Se o pixel for transparente, mantÃ©m transparente
                     if (pixel.A < 128)
                     {
                         bmp.SetPixel(x, y, Color.Transparent);
                     }
                     else
                     {
-                        // Se for visível, pinta de preto
+                        // Se for visÃ­vel, pinta de preto
                         bmp.SetPixel(x, y, Color.Black);
                     }
                 }
@@ -74,11 +74,11 @@ namespace quiz_pokemon
             var image = await apiPokemon.DownloadImageAsync(currentPokemon.sprites.other.officialArtwork.front_default);
             pictureBox4.Image = MakeSilhouette(image);
             pictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
-            lblNomeU.Text = "Ola: "+ nomeUsuario;
+            lblNomeU.Text = "Ola: "+ nomeUsuario; //mostra o nome do usuario na label que ta no panel.
 
 
             // Reseta os textos
-            labelStatus.Text = "Quem é esse Pokémon?";
+            labelStatus.Text = "Quem Ã© esse PokÃ©mon?";
             lbltipo1.Text = "";
             lblTipo2.Text = "";
             lblAltura.Text = "";
@@ -123,7 +123,7 @@ namespace quiz_pokemon
 
             if (resposta == currentPokemon.name.ToLower())
             {
-                labelStatus.Text = "Você acertou!";
+                labelStatus.Text = "VocÃª acertou!";
                 labelStatus.ForeColor = Color.Green;
 
                 // Mostra a imagem colorida
@@ -141,7 +141,7 @@ namespace quiz_pokemon
             }
             else
             {
-                labelStatus.Text = "Você errou! Tente novamente.";
+                labelStatus.Text = "VocÃª errou! Tente novamente.";
                 labelStatus.ForeColor = Color.Red;
                 // Dicas mesmo se errar
                 lbltipo1.Text = currentPokemon.types.Count > 0 ? currentPokemon.types[0].type.name : "";
@@ -154,11 +154,11 @@ namespace quiz_pokemon
             txtNome.Text = "";
         }
 
-        private async void btnRecomeçar_Click(object sender, EventArgs e)
+        private async void btnRecomeÃ§ar_Click(object sender, EventArgs e)
         {
-            btnRecomeçar.Enabled = false; // Impede múltiplos cliques
+            btnRecomeÃ§ar.Enabled = false; // Impede mÃºltiplos cliques
 
-            labelStatus.Text = "Carregando Pokémon...";
+            labelStatus.Text = "Carregando PokÃ©mon...";
             lbltipo1.Text = "";
             lblTipo2.Text = "";
             lblAltura.Text = "";
@@ -169,22 +169,22 @@ namespace quiz_pokemon
 
             if (pokemon == null)
             {
-                MessageBox.Show("Não foi possível carregar o Pokémon. Aguarde um pouco e tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                labelStatus.Text = "Erro ao carregar Pokémon.";
+                MessageBox.Show("NÃ£o foi possÃ­vel carregar o PokÃ©mon. Aguarde um pouco e tente novamente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                labelStatus.Text = "Erro ao carregar PokÃ©mon.";
             }
             else
             {
                 await LoadPokemon();
 
                 // Limpa todos os labels e status
-                labelStatus.Text = "Quem é esse Pokémon?";
+                labelStatus.Text = "Quem Ã© esse PokÃ©mon?";
                 lbltipo1.Text = "";
                 lblTipo2.Text = "";
                 lblAltura.Text = "";
                 lblPeso.Text = "";
                 txtNome.Text = "";
             }
-            btnRecomeçar.Enabled = true; // Habilita novamente o botão
+            btnRecomeÃ§ar.Enabled = true; // Habilita novamente o botÃ£o
         }
     }
 }
